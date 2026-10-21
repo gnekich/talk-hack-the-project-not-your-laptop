@@ -1,0 +1,70 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  /* color: rgba(255, 255, 255, 0.87);
+    background-color: #242424; */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --r-main-font:
+    -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial,
+    sans-serif;
+  --r-main-font-size: 30px;
+
+  /* --r-heading-color: #bd93f9;
+  --r-link-color: #ff79c6;
+  --r-background-color: #1c1120; */
+
+  --r-heading-color: #f2f2f2;
+  --r-link-color: #5dff48;
+  --r-link-color-hover: #5dff4860;
+  --r-background-color: #1c1120;
+}
+
+.reveal .slides > section.dracula-theme,
+.reveal .slides > section.dracula-theme > section {
+  --r-background-color: #282a36;
+  --r-main-color: #f8f8f2;
+  --r-heading-color: #bd93f9;
+  --r-link-color: #ff79c6;
+  --r-link-color-hover: #8be9fd;
+  --r-selection-background-color: #44475a;
+  
+  color: var(--r-main-color);
+}
+
+.reveal .slides > section.dracula-theme h1,
+.reveal .slides > section.dracula-theme h2,
+.reveal .slides > section.dracula-theme h3,
+.reveal .slides > section.dracula-theme h4,
+.reveal .slides > section.dracula-theme h5,
+.reveal .slides > section.dracula-theme h6,
+.reveal .slides > section.dracula-theme strong,
+.reveal .slides > section.dracula-theme p,
+.reveal .slides > section.dracula-theme li {
+  color: var(--r-main-color);
+}
+
+.reveal .slides > section.dracula-theme h1,
+.reveal .slides > section.dracula-theme h2,
+.reveal .slides > section.dracula-theme h3,
+.reveal .slides > section.dracula-theme h4,
+.reveal .slides > section.dracula-theme h5,
+.reveal .slides > section.dracula-theme h6 {
+  color: var(--r-heading-color);
+}
+
+.reveal .slides > section.dracula-theme a {
+  color: var(--r-link-color);
+}
+
+.reveal .slides > section.dracula-theme a:hover {
+  color: var(--r-link-color-hover);
+}

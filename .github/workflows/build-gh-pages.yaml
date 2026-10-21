@@ -1,0 +1,63 @@
+name: Build GitHub Pages (React App)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 12.5.1
+          run_install: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.x"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build-gh-pages
+        env:
+          VITE_FIREBASE_API_KEY: AIzaSyB2UX-GjAnsVoQ8oggOwjbT0nWJe6KiQH0
+          VITE_FIREBASE_AUTH_DOMAIN: x2bad00.firebaseapp.com
+          VITE_FIREBASE_PROJECT_ID: x2bad00
+          VITE_FIREBASE_STORAGE_BUCKET: x2bad00.firebasestorage.app
+          VITE_FIREBASE_MESSAGING_SENDER_ID: 425387138207
+          VITE_FIREBASE_APP_ID: 1:425387138207:web:ba2d98991dfd4b244796aa
+          VITE_PUBLIC_SITE_NAME: ${{ vars.VITE_PUBLIC_SITE_NAME }}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+  # Deploy job
+  deploy:
+    # Add a dependency to the build job
+    needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
