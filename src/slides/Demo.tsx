@@ -16,21 +16,7 @@ function Slide() {
 
         <section>
           <h2>Demo Gods have mercy!</h2>
-          <p>- every DEFCON since 1993</p>
-        </section>
-
-        <section>
-          <h3 style={{ textAlign: "left" }}>Demo plan</h3>
-          <ol style={{ textAlign: "left" }}>
-            <li>Start projekta na hostu vs u devcontaineru</li>
-            <li>Install dependencyja i promatranje side-effectova</li>
-            <li>Pokušaj pristupa osjetljivim resursima</li>
-            <li>Container rebuild + credential rotate kao recovery</li>
-          </ol>
-          <SpeakerNotes>
-            Fokus nije “wow exploit”, nego usporedba koliko je šteta ograničena
-            kad je razvoj izoliran.
-          </SpeakerNotes>
+          <p></p>
         </section>
 
         <section>
@@ -38,16 +24,27 @@ function Slide() {
             <a>$</a> command cheat sheet
           </h3>
           <pre>
-            <code className="language-bash" data-noescape>{`# inside devcontainer
-pnpm install --frozen-lockfile
-pnpm audit
+            <code className="language-bash" data-noescape>{`cd demo/npm
+npm install .
+cat ./INFECTED_INSTALL_RAN.txt
 
-# optional Python example
-pip install --require-hashes -r requirements.txt
+rm -rf ./INFECTED_INSTALL_RAN.txt
+pnpm install .
 
-# incident response drill
-Dev Containers: Rebuild Container
-rotate tokens + verify access logs`}</code>
+apt install python3-full
+python3 -m venv /venv/default
+source /venv/default/bin/activate
+
+cd demo/python
+pip install .
+cat ./INFECTED_BUILD_RAN.txt
+
+rm -rf ./INFECTED_BUILD_RAN.txt
+
+pip install uv
+uv pip install .
+cat ./INFECTED_BUILD_RAN.txt
+`}</code>
           </pre>
           <SpeakerNotes>
             Ove naredbe su osnova za reproducibilan setup i brz reset nakon

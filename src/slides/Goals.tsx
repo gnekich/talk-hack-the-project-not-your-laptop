@@ -14,7 +14,7 @@ function Slide() {
               Definirati <a>supply chain</a> rizike u developmentu (npm / pip).
             </li>
             <li>
-              Objasniti zašto je <a>developerov laptop</a> često najveći blast radius.
+              Objasniti zašto je <a>developerov laptop</a> često ima najveći blast radius.
             </li>
             <li>
               Pokazati kako <a>devcontaineri</a> izoliraju runtime i
@@ -27,10 +27,11 @@ function Slide() {
               Proći kroz <a>pnpm vs npm</a> prednosti iz perspektive sigurnosti.
             </li>
             <li>
-              Složiti praktičan playbook: Što sutra možete uvesti bez velikog
-              procesa.
+              Složiti praktičan playbook: Što već sutra možete početi primjenjivati.
             </li>
-            <li>Napraviti mini demo napada iz perspektive napadača.</li>
+            <li>Napraviti mini demo mogućeg incidenta.</li>
+            <li>???</li>
+            <li>Profit</li>
           </ol>
           <SpeakerNotes>
             Danas ne pričamo o jednom framework bug-u, nego o svakodnevnoj navici

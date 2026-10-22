@@ -160,8 +160,8 @@ function Slide() {
             <div style={{ width: "48%", textAlign: "left" }}>
               <h4>Prednosti</h4>
               <ul>
-                <li>Manji blast radius</li>
-                <li>Jedinstven setup timova</li>
+                <li><a>Manji blast radius</a></li>
+                <li><a>Jedinstven setup timova</a></li>
                 <li>Brz rebuild i reset</li>
                 <li>Jasno razgraničenje host vs container</li>
               </ul>
@@ -184,6 +184,12 @@ function Slide() {
 
      
       <section>
+        <section>
+          <img src="/assets/remote-containers-readme.gif" alt="Devcontainer showcase" />
+          <SpeakerNotes>
+            Cilj je da environment bude disposable, dokumentiran i ograničen.
+          </SpeakerNotes>
+        </section>
         <section>
           <h3>Devcontainer hardening baseline</h3>
           <ul>
