@@ -34,6 +34,60 @@ function Slide() {
 
       <section>
         <section>
+          <h3>Devcontainers to the rescue</h3>
+          <p style={{ textAlign: "left" }}>
+            Devcontainer je <a>izoliran, reproducibilan razvojni environment</a>
+            koji se pokreće u Docker kontejneru, a ne direktno na host laptopu.
+          </p>
+          <ul style={{ textAlign: "left" }}>
+            <li>Definiran u <code>.devcontainer/devcontainer.json</code></li>
+            <li>Sadrži točan OS, toolchain, CLI alate i IDE config</li>
+            <li>Repozitorij i radni direktorij ostaju na hostu, ali runtime ide u container</li>
+          </ul>
+          <SpeakerNotes>
+            Devcontainer je zapravo standardiziran sandbox za razvoj. Umjesto da
+            svi razvijaju direktno na svom laptopu sa različitim verzijama toolchain-a,
+            svi dobivaju isti environment: isti OS, isti alat, isto ponašanje.
+          </SpeakerNotes>
+        </section>
+
+        <section>
+          <h3>Zašto je to korisno?</h3>
+          <div
+            style={{
+              display: "flex",
+              gap: "32px",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+            }}
+          >
+            <div style={{ width: "48%", textAlign: "left" }}>
+              <h4>Prednosti</h4>
+              <ul>
+                <li>Manji blast radius</li>
+                <li>Jedinstven setup timova</li>
+                <li>Brz rebuild i reset</li>
+                <li>Jasno razgraničenje host vs container</li>
+              </ul>
+            </div>
+            <div style={{ width: "48%", textAlign: "left" }}>
+              <h4>U praksi</h4>
+              <ul>
+                <li>npm install ne kompromitira host SSH ključeve</li>
+                <li>pip install ne “prljava” globalni sistem</li>
+                <li>incident cleanup je “destroy + recreate”</li>
+              </ul>
+            </div>
+          </div>
+          <SpeakerNotes>
+            Prednost nije samo “lakše napraviti setup”. Prednost je što šteta od
+            zlonamjernog dependencyja ostaje uglavnom unutar kontejnera, a ne na hostu.
+          </SpeakerNotes>
+        </section>
+      </section>
+
+      <section>
+        <section>
           <h3>Supply chain rizici</h3>
           <ul>
             <li>Typosquatting (npr. <a>react-domm</a>, <a>reqeust</a>, itd.)</li>
