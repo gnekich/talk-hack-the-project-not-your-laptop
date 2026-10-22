@@ -32,7 +32,7 @@ function Slide() {
         <h2>Zaključak</h2>
         <p>
           Ne možemo eliminirati sve supply chain rizike, ali možemo smanjiti
-          blast radius i ubrzati oporavak.
+          blast radius i standardizirati development environment.
         </p>
         <ul>
           <li>
@@ -43,7 +43,6 @@ function Slide() {
           <li>Koristi non-root setup i minimalne ovlasti.</li>
           <li>Zaključaj dependency graph (lockfile discipline).</li>
           <li>Preferiraj pnpm zbog strožeg modela i reproducibilnosti.</li>
-          <li>Redovito vježbaj rebuild + rotate + verify incident flow.</li>
           <li>
             Security nije checkbox nego <a>operativna rutina</a>.
           </li>
@@ -54,25 +53,27 @@ function Slide() {
         </SpeakerNotes>
       </section>
 
-      <section>
+    <section>
         <section>
           <h1>Thank you</h1>
           <p>Questions?</p>
           <SpeakerNotes>
-            Pozovi publiku da podijeli kako trenutno izolira development
-            okruženja i što im je najveći blocker.
+            Invite Q&A and revisit the two opening questions.
+          </SpeakerNotes>
+        </section>
+         <section>
+          <h3>Because you asked the question!</h3>
+          <SpeakerNotes>
+            Invite Q&A and revisit the two opening questions.
           </SpeakerNotes>
         </section>
         <section>
-          <h3>Checklist za ponijeti doma</h3>
-          <ol style={{ textAlign: "left" }}>
-            <li>Devcontainer baseline</li>
-            <li>pnpm + frozen lockfile u CI-u</li>
-            <li>Credential scoping i rotacija</li>
-            <li>Dependency review kao dio code review-a</li>
-          </ol>
+          <h1>You WON!</h1>
+          <p>Unlocked NFC NTAG215 chip, with 540 bytes of storage!
+            <br/>Have fun! Hack the world!</p>
+          <p></p>
           <SpeakerNotes>
-            Zaključi s konkretnim akcijama koje tim može odraditi ovaj tjedan.
+            Invite Q&A and revisit the two opening questions.
           </SpeakerNotes>
         </section>
       </section>
@@ -80,9 +81,6 @@ function Slide() {
       <section>
         <h2>Contact</h2>
         <p>Happy to discuss after the talk.</p>
-        <p style={{ fontSize: "0.65em", opacity: 0.75 }}>
-          QR refresh: {formattedTimestamp}
-        </p>
 
         <div style={{ paddingTop: "24px" }}>
           <QRCodeSVG

@@ -8,15 +8,10 @@ function Slide() {
         <section>
           <h2>
             <a>
-              <PasswordGlitchTypeEffectText
-                reanimateEveryMs={5000}
-                toReanimateChildren={"Demo"}
-              >
-                Hack the project, not your laptop!
-              </PasswordGlitchTypeEffectText>
+              Demo
             </a>
           </h2>
-          <p>Walkthrough: install, isolate, contain, recover</p>
+          <p></p>
         </section>
 
         <section>

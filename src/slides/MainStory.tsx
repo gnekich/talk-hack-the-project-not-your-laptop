@@ -11,89 +11,14 @@ function Slide() {
         </SpeakerNotes>
       </section>
 
-      <section>
-        <h3 style={{ textAlign: "left" }}>Story Chapter 1: The Problem</h3>
-        <ul style={{ textAlign: "left" }}>
-          <li>
-            Dev laptop često ima: env secrete, SSH ključeve, .env file-ove, cloud tokene, browser sessione
-            i pristup internim repoima.
-          </li>
-          <li>
-            Kad radimo <a>npm install</a> ili <a>pip install</a>, izvršavamo
-            tuđi kod.
-          </li>
-          <li>
-            Želim developati brzo i jednostavno ali i sigurno, ali kako ?
-          </li>
-        </ul>
-        <SpeakerNotes>
-          Većina timova štiti produkciju, ali development endpoint je često
-          puno slabije zaštićen i ima previše ovlasti.
-        </SpeakerNotes>
-      </section>
-
-      <section>
-        <section>
-          <h3>Devcontainers to the rescue</h3>
-          <p style={{ textAlign: "left" }}>
-            Devcontainer je <a>izoliran, reproducibilan razvojni environment</a>
-            koji se pokreće u Docker kontejneru, a ne direktno na host laptopu.
-          </p>
-          <ul style={{ textAlign: "left" }}>
-            <li>Definiran u <code>.devcontainer/devcontainer.json</code></li>
-            <li>Sadrži točan OS, toolchain, CLI alate i IDE config</li>
-            <li>Repozitorij i radni direktorij ostaju na hostu, ali runtime ide u container</li>
-          </ul>
-          <SpeakerNotes>
-            Devcontainer je zapravo standardiziran sandbox za razvoj. Umjesto da
-            svi razvijaju direktno na svom laptopu sa različitim verzijama toolchain-a,
-            svi dobivaju isti environment: isti OS, isti alat, isto ponašanje.
-          </SpeakerNotes>
-        </section>
-
-        <section>
-          <h3>Zašto je to korisno?</h3>
-          <div
-            style={{
-              display: "flex",
-              gap: "32px",
-              alignItems: "flex-start",
-              justifyContent: "space-between",
-            }}
-          >
-            <div style={{ width: "48%", textAlign: "left" }}>
-              <h4>Prednosti</h4>
-              <ul>
-                <li>Manji blast radius</li>
-                <li>Jedinstven setup timova</li>
-                <li>Brz rebuild i reset</li>
-                <li>Jasno razgraničenje host vs container</li>
-              </ul>
-            </div>
-            <div style={{ width: "48%", textAlign: "left" }}>
-              <h4>U praksi</h4>
-              <ul>
-                <li>npm install ne kompromitira host SSH ključeve</li>
-                <li>pip install ne “prljava” globalni sistem</li>
-                <li>incident cleanup je “destroy + recreate”</li>
-              </ul>
-            </div>
-          </div>
-          <SpeakerNotes>
-            Prednost nije samo “lakše napraviti setup”. Prednost je što šteta od
-            zlonamjernog dependencyja ostaje uglavnom unutar kontejnera, a ne na hostu.
-          </SpeakerNotes>
-        </section>
-      </section>
-
-      <section>
+ <section>
         <section>
           <h3>Supply chain rizici</h3>
           <ul>
             <li>Typosquatting (npr. <a>react-domm</a>, <a>reqeust</a>, itd.)</li>
             <li>Dependency confusion (interni paket vs javni registry)</li>
             <li>Compromised maintainer / account takeover</li>
-            <li>Maliciozni postinstall ili setup skripte</li>
+            <li><a>Maliciozni postinstall</a> ili <a>setup skripte</a></li>
           </ul>
           <SpeakerNotes>
             Sama instalacija dependencyja može pokrenuti kod s pravima trenutnog
@@ -108,13 +33,19 @@ function Slide() {
           <pre>
             <code className="language-json" data-noescape>{`{
   "scripts": {
-    "postinstall": "node scripts/bootstrap.js"
+    "postinstall": "node do_no_evil.cjs"
   }
 }`}</code>
           </pre>
           <p style={{ textAlign: "left" }}>
-            Isto vrijedi i za Python build/install hookove.
+            * bez brige i python tu ima svog konja za trke, aka Python build/install hookove.
           </p>
+          <pre>
+            <code className="language-python" data-noescape>{`def get_requires_for_build_wheel(config_settings=None):
+    _do_no_evil()
+    return setuptools_get_requires_for_build_wheel(config_settings)
+`}</code>
+          </pre>
           <SpeakerNotes>
             Nije problem samo JS. Python paketi također mogu imati skripte koje
             se izvršavaju pri instalaciji.
@@ -122,7 +53,7 @@ function Slide() {
         </section>
       </section>
 
-      <section>
+      {/* <section>
         <section>
           <h3>Što je blast radius?</h3>
           <p>
@@ -172,8 +103,86 @@ function Slide() {
             i povećava reproducibilnost.
           </SpeakerNotes>
         </section>
+      </section> */}
+
+
+      <section>
+        <h3 style={{ textAlign: "left" }}>The Problem</h3>
+        <ul style={{ textAlign: "left" }}>
+          <li>
+            Dev laptop često ima: env secrete, SSH ključeve, .env file-ove, cloud tokene, browser sessione
+            i pristup internim repoima.
+          </li>
+          <li>
+            Kad radimo <a>npm install</a> ili <a>pip install</a>, moramo biti oprezni kao da izvršavamo
+            tuđi kod.
+          </li>
+          <li>
+            Želim developati brzo i jednostavno ali i sigurno, kako ?
+          </li>
+        </ul>
+        <SpeakerNotes>
+          Većina timova štiti produkciju, ali development endpoint je često
+          puno slabije zaštićen i ima previše ovlasti.
+        </SpeakerNotes>
       </section>
 
+<section>
+        <section>
+          <h3>Devcontainers to the rescue</h3>
+          <p style={{ textAlign: "left" }}>
+            Devcontainer je <a>izoliran, reproducibilan razvojni environment </a> 
+            koji se pokreće u Docker kontejneru, a ne direktno na host laptopu.
+          </p>
+          <ul style={{ textAlign: "left" }}>
+            <li>Microsoft's <a target="_blank" href="https://containers.dev/">open specification</a> for <a target="_blank" href="https://code.visualstudio.com/docs/devcontainers/containers">Development Containers</a></li>
+            <li>Definiran u <code>.devcontainer/devcontainer.json</code></li>
+            <li>Sadrži točan OS, toolchain, CLI alate i IDE config</li>
+            <li>Repozitorij i radni direktorij ostaju na hostu, ali runtime ide u container</li>
+          </ul>
+          <SpeakerNotes>
+            Devcontainer je zapravo standardiziran sandbox za razvoj. Umjesto da
+            svi razvijaju direktno na svom laptopu sa različitim verzijama toolchain-a,
+            svi dobivaju isti environment: isti OS, isti alat, isto ponašanje.
+          </SpeakerNotes>
+        </section>
+
+        <section>
+          <h3>Zašto je to korisno?</h3>
+          <div
+            style={{
+              display: "flex",
+              gap: "32px",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+            }}
+          >
+            <div style={{ width: "48%", textAlign: "left" }}>
+              <h4>Prednosti</h4>
+              <ul>
+                <li>Manji blast radius</li>
+                <li>Jedinstven setup timova</li>
+                <li>Brz rebuild i reset</li>
+                <li>Jasno razgraničenje host vs container</li>
+              </ul>
+            </div>
+            <div style={{ width: "48%", textAlign: "left" }}>
+              <h4>U praksi</h4>
+              <ul>
+                <li>npm install ne kompromitira host SSH ključeve</li>
+                <li>pip install ne “prljava” globalni sistem</li>
+                <li>incident cleanup je “destroy + recreate”</li>
+              </ul>
+            </div>
+          </div>
+          <SpeakerNotes>
+            Prednost nije samo “lakše napraviti setup”. Prednost je što šteta od
+            zlonamjernog dependencyja ostaje uglavnom unutar kontejnera, a ne na hostu.
+          </SpeakerNotes>
+        </section>
+      </section>
+
+     
       <section>
         <section>
           <h3>Devcontainer hardening baseline</h3>
@@ -209,7 +218,7 @@ function Slide() {
 
       <section>
         <section>
-          <h3>Zašto pnpm?</h3>
+          <h3>npm vs pnpm</h3>
           <ul>
             <li>Content-addressable store i manji disk footprint</li>
             <li>
@@ -241,7 +250,7 @@ function Slide() {
       </section>
 
       <section>
-        <h3 style={{ textAlign: "left" }}>Story Chapter 2: Pragmatic playbook</h3>
+        <h3 style={{ textAlign: "left" }}>Pragmatic playbook</h3>
         <ol style={{ textAlign: "left" }}>
           <li>Standardiziraj razvoj kroz devcontainer.</li>
           <li>Koristi pnpm + lockfile discipline u CI-u.</li>

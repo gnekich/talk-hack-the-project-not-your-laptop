@@ -7,8 +7,19 @@ from setuptools.build_meta import (
 
 
 def _write_marker() -> None:
-    Path(__file__).with_name("BUILD_RAN.txt").write_text(
-        "THIS IS DEMO, a pip build hook ran. YOU ARE INFECTED!!! (Well could be).\n",
+    from datetime import datetime, timezone
+
+    timestamp = datetime.now(timezone.utc).isoformat().replace("T", " ").replace("Z", " UTC")
+
+    Path(__file__).with_name("INFECTED_BUILD_RAN.txt").write_text(
+        f"""THIS IS DEMO, a pip build hook ran.
+
+YOU ARE INFECTED!!! (Well could be).
+
+All your secrets belong to us!
+
+Time: {timestamp}
+        """,
         encoding="utf-8",
     )
 

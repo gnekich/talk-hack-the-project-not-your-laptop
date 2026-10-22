@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Set public site name
+        run: echo "VITE_PUBLIC_SITE_NAME=✨Slides ✨ | $(date -u +'%Y-%m-%d %H:%M:%SZ')" >> "$GITHUB_ENV"
+
       - name: Build
         run: pnpm run build-gh-pages
         env:
@@ -35,7 +38,6 @@ jobs:
           VITE_FIREBASE_STORAGE_BUCKET: x2bad00.firebasestorage.app
           VITE_FIREBASE_MESSAGING_SENDER_ID: 425387138207
           VITE_FIREBASE_APP_ID: 1:425387138207:web:ba2d98991dfd4b244796aa
-          VITE_PUBLIC_SITE_NAME: ${{ vars.VITE_PUBLIC_SITE_NAME }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
