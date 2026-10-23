@@ -51,7 +51,7 @@ function Slide() {
           <div>
              <div style={{ paddingTop: "24px" }}>
                       <QRCodeSVG
-                        value={`${'https://www.elixirrdigital.com/'}?utm_source=company_slide_prezentacija_devcontainers&ts=${Date.now()}`}
+                        value={`${'https://www.elixirrdigital.com/'}?utm_source=cs_pd`}
                         size={300}
                         bgColor="#1d0f26"
                         fgColor="#f0a300"
@@ -61,8 +61,8 @@ function Slide() {
         src: "assets/elixirr-logo-small.png", // URL or imported image asset
         x: undefined,                        // Center horizontally automatically
         y: undefined,                        // Center vertically automatically
-        width: 96,
-        height: 37,
+        width: 64,
+        height: 25,
         excavate: true,                      // Clears the QR dots behind the logo
       }}
                       />
