@@ -41,7 +41,7 @@ function Slide() {
           </li>
           <li>Izoliraj dev environment kroz devcontainere.</li>
           <li>Koristi non-root setup i minimalne ovlasti.</li>
-          <li>Zaključaj dependency graph (lockfile discipline).</li>
+          <li>Zaključaj dependency graph (lockfile).</li>
           <li>Preferiraj pnpm zbog strožeg modela i reproducibilnosti.</li>
           <li>
             Security nije checkbox nego <a>operativna rutina</a>.

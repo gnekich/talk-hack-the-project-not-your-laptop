@@ -128,27 +128,27 @@ function Slide() {
       </section>
 
 <section>
-        <section>
-          <h3>Devcontainers to the rescue</h3>
-          <p style={{ textAlign: "left" }}>
-            Devcontainer je <a>izoliran, reproducibilan razvojni environment </a> 
-            koji se pokreće u Docker kontejneru, a ne direktno na host laptopu.
-          </p>
-          <ul style={{ textAlign: "left" }}>
-            <li>Microsoft's <a target="_blank" href="https://containers.dev/">open specification</a> for <a target="_blank" href="https://code.visualstudio.com/docs/devcontainers/containers">Development Containers</a></li>
-            <li>Definiran u <code>.devcontainer/devcontainer.json</code></li>
-            <li>Sadrži točan OS, toolchain, CLI alate i IDE config</li>
-            <li>Repozitorij i radni direktorij ostaju na hostu, ali runtime ide u container</li>
-          </ul>
-          <SpeakerNotes>
-            Devcontainer je zapravo standardiziran sandbox za razvoj. Umjesto da
-            svi razvijaju direktno na svom laptopu sa različitim verzijama toolchain-a,
-            svi dobivaju isti environment: isti OS, isti alat, isto ponašanje.
-          </SpeakerNotes>
-        </section>
+  <section>
+    <h3>Devcontainers to the rescue</h3>
+    <p style={{ textAlign: "left" }}>
+      Devcontainer je <a>izoliran, reproducibilan razvojni environment</a>
+      koji se pokreće u Docker kontejneru, a ne direktno na host laptopu.
+    </p>
+    <ul style={{ textAlign: "left" }}>
+      <li>Microsoft's <a target="_blank" href="https://containers.dev/">open specification</a> for <a target="_blank" href="https://code.visualstudio.com/docs/devcontainers/containers">Development Containers</a></li>
+      <li>Definiran u <code>.devcontainer/devcontainer.json</code></li>
+      <li>Sadrži točan OS, toolchain, CLI alate i IDE config</li>
+      <li>Repozitorij i radni direktorij ostaju na hostu, ali runtime ide u container</li>
+    </ul>
+    <SpeakerNotes>
+      Devcontainer je zapravo standardiziran sandbox za razvoj. Umjesto da
+      svi razvijaju direktno na svom laptopu sa različitim verzijama toolchain-a,
+      svi dobivaju isti environment: isti OS, isti alat, isto ponašanje.
+    </SpeakerNotes>
+  </section>
 
-        <section>
-          <h3>Zašto je to korisno?</h3>
+  <section>
+    <h3>Zašto je to korisno?</h3>
           <div
             style={{
               display: "flex",
@@ -221,7 +221,27 @@ function Slide() {
           </SpeakerNotes>
         </section>
       </section>
+<section>
+        <section>
+    <h3>Virtualization vs containers</h3>
+          <p style={{ textAlign: "left" }}>
+      <a>Virtualizacija</a> imitira cijeli računalni sustav: VM ima vlastiti kernel,
+      vlastite drivere i svoju razinu apstrakcije. <a>Kontejner</a> dijeli host kernel,
+      ali izolira proces, filesystem i mrežu.
+    </p>
+    <ul style={{ textAlign: "left" }}>
+      <li>VM: traži više resursa, dulje pokretanje, više izolacije na razini OS-a</li>
+      <li>Container: lakši, brži, bolji za razvojni workflow i build jobs ali manje izolacije na razini OS-a</li>
+      <li>Novi Apple containers koristi MicroVM-ove za dodatnu izolaciju svakog kontejnera</li>
+    </ul>
+    <SpeakerNotes>
+      Virtualizacija je kao da imate potpuno novi računar unutar vašeg računala.
+      Kontejner je više kao izoliran paket koji dijeli isto jezgro, ali ima svoj
+      filesystem i vlastite procese. Zato su kontejneri idealni za dev environment.
+    </SpeakerNotes>
+  </section>
 
+</section>
       <section>
         <section>
           <h3>npm vs pnpm</h3>
@@ -231,7 +251,9 @@ function Slide() {
               Strict node_modules layout smanjuje “phantom dependency” bugove
             </li>
             <li>Brži CI i lokalni install kroz cache reuse</li>
-            <li>Bolja reproducibilnost uz lockfile discipline</li>
+            <li>Bolja reproducibilnost uz lockfile</li>
+            <li>Approve builds</li>
+            <li>Ukratko brži bolji i sigurniji</li>
           </ul>
           <SpeakerNotes>
             Pnpm nije samo “brži npm”. Daje stroži dependency model i manje
@@ -239,30 +261,15 @@ function Slide() {
           </SpeakerNotes>
         </section>
 
-        <section>
-          <h3 style={{ textAlign: "left" }}>
-            <a>$</a> pnpm install --frozen-lockfile
-          </h3>
-          <ul style={{ textAlign: "left" }}>
-            <li>Faila ako lockfile nije usklađen s manifestom</li>
-            <li>Smanjuje “works on my machine” drift</li>
-            <li>Jasno signalizira neautorizirane promjene dependency graph-a</li>
-          </ul>
-          <SpeakerNotes>
-            Frozen lockfile je mali guardrail koji jako puno pomaže i lokalno i
-            u CI-u.
-          </SpeakerNotes>
-        </section>
       </section>
 
       <section>
         <h3 style={{ textAlign: "left" }}>Pragmatic playbook</h3>
         <ol style={{ textAlign: "left" }}>
           <li>Standardiziraj razvoj kroz devcontainer.</li>
-          <li>Koristi pnpm + lockfile discipline u CI-u.</li>
+          <li>Koristi pnpm + lockfile u CI-u.</li>
           <li>Review dependency diffove kao kod.</li>
           <li>Scopeaj tokene i tajne po principu least privilege.</li>
-          <li>Vježbaj incident reset: rebuild, rotate, verify.</li>
         </ol>
         <SpeakerNotes>
           Ovo nisu “enterprise-only” mjere. Većina se može uvesti u jednom
