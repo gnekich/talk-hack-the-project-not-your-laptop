@@ -1,3 +1,5 @@
+import { QRCodeSVG } from "qrcode.react";
+
 import SpeakerNotes from "../components/SpeakerNotes.jsx";
 
 function Slide() {
@@ -47,14 +49,25 @@ function Slide() {
             </p>
           </div>
           <div>
-            <img
-              src="assets/elixirr-digital.svg"
-              alt="QR kod za web stranicu"
-              style={{
-                width: "350px",
-                height: "350px",
-              }}
-            />
+             <div style={{ paddingTop: "24px" }}>
+                      <QRCodeSVG
+                        value={`${'https://www.elixirrdigital.com/'}?utm_source=company_slide_prezentacija_devcontainers&ts=${Date.now()}`}
+                        size={300}
+                        bgColor="#1d0f26"
+                        fgColor="#f0a300"
+                        includeMargin={true}
+                        marginSize={1}
+                        imageSettings={{
+        src: "assets/elixirr-logo-small.png", // URL or imported image asset
+        x: undefined,                        // Center horizontally automatically
+        y: undefined,                        // Center vertically automatically
+        width: 96,
+        height: 37,
+        excavate: true,                      // Clears the QR dots behind the logo
+      }}
+                      />
+                    </div>
+           
           </div>
         </div>
         <SpeakerNotes>
