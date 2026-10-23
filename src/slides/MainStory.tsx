@@ -132,7 +132,7 @@ function Slide() {
           <h3>Devcontainers to the rescue</h3>
           <p style={{ textAlign: "left" }}>
             Devcontainer je <a>izoliran, reproducibilan razvojni environment</a>
-            koji se pokreće u Docker kontejneru, a ne direktno na host laptopu.
+            {' '}koji se pokreće u Docker kontejneru, a ne direktno na host laptopu.
           </p>
           <ul style={{ textAlign: "left" }}>
             <li>Microsoft's <a target="_blank" href="https://containers.dev/">open specification</a> for <a target="_blank" href="https://code.visualstudio.com/docs/devcontainers/containers">Development Containers</a></li>
@@ -160,8 +160,8 @@ function Slide() {
             <div style={{ width: "48%", textAlign: "left" }}>
               <h4>Prednosti</h4>
               <ul>
-                <li><a>Manji blast radius</a></li>
                 <li><a>Jedinstven setup timova</a></li>
+                <li><a>Manji blast radius</a></li>
                 <li>Brz rebuild i reset</li>
                 <li>Jasno razgraničenje host vs container</li>
               </ul>
@@ -169,8 +169,8 @@ function Slide() {
             <div style={{ width: "48%", textAlign: "left" }}>
               <h4>U praksi</h4>
               <ul>
-                <li>npm install ne kompromitira host SSH ključeve</li>
-                <li>pip install ne “prljava” globalni sistem</li>
+                <li>npm install ne kompromitira host mašinu</li>
+                <li>pip install ne “prlja” globalni sistem</li>
                 <li>incident cleanup je “destroy + recreate”</li>
               </ul>
             </div>
@@ -282,8 +282,9 @@ function Slide() {
           <li>Standardiziraj razvoj kroz devcontainer.</li>
           <li>Koristi pnpm + lockfile u CI-u.</li>
           <li>Review dependency diffove kao kod.</li>
+          <li>minimumReleaseAge - osiguraj da se nove verzije paketa koriste tek nakon određenog vremena</li>
           <li>Scopeaj tokene i tajne po principu least privilege.</li>
-          <li>Stalno razmišljaj i budi na oprezu, sigurnost je kontinuirani proces.</li>
+          <li>Stalno razmišljaj, prati novosti i budi na oprezu, sigurnost je kontinuirani proces.</li>
           <li>Pronađi već spreman devcontainer za tvoj stack ili napravi svoj već danas!</li>
         </ol>
         <SpeakerNotes>
