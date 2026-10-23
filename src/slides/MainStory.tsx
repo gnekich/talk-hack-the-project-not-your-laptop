@@ -184,10 +184,12 @@ function Slide() {
 
       <section>
         <section>
+          <h3>VS Code Extension</h3>
           <img src="assets/vscode-extension.png" alt="Vscode Extension" />
 
         </section>
         <section>
+          <h3>Cursor Extension</h3>
           <img src="assets/cursor-extension.png" alt="Cursor Extension" />
 
         </section>
@@ -281,6 +283,8 @@ function Slide() {
           <li>Koristi pnpm + lockfile u CI-u.</li>
           <li>Review dependency diffove kao kod.</li>
           <li>Scopeaj tokene i tajne po principu least privilege.</li>
+          <li>Stalno razmišljaj i budi na oprezu, sigurnost je kontinuirani proces.</li>
+          <li>Pronađi već spreman devcontainer za tvoj stack ili napravi svoj već danas!</li>
         </ol>
         <SpeakerNotes>
           Ovo nisu “enterprise-only” mjere. Većina se može uvesti u jednom
